@@ -222,6 +222,20 @@ class Dashboard(QWidget):
                 dialog.close()
 
     def handle_start_consultation(self):
+        def check_for_ongoing_consultation():
+            rows = self.ui.tblwdgt_dashboard.rowCount()
+            ongoing = False
+            row_id = None
+
+            for row in range(rows):
+                status = self.ui.tblwdgt_dashboard.item(row, 2).text()
+
+                if status == "Ongoing":
+                    ongoing = True
+                    row_id = row
+
+            return ongoing, row_id
+
         def consultation_started(consultation_id: int):
             self.database.connect()
 
@@ -267,15 +281,21 @@ class Dashboard(QWidget):
             return
 
         if row > 0:
-            if selected_items:
-                selected_row = selected_items[0].row()
-                consultation_id = self.ui.tblwdgt_dashboard.item(selected_row, 0).text()
-                patient_name = self.ui.tblwdgt_dashboard.item(selected_row, 1).text()
-            else:
-                consultation_id = self.ui.tblwdgt_dashboard.item(0, 0).text()
-                patient_name = self.ui.tblwdgt_dashboard.item(0, 1).text()
+            ongoing, row_id = check_for_ongoing_consultation()
 
-        patient_id = fetch_patient_id(patient_name)
+            if not ongoing:
+                if selected_items:
+                    selected_row = selected_items[0].row()
+                    consultation_id = self.ui.tblwdgt_dashboard.item(selected_row, 0).text()
+                    patient_name = self.ui.tblwdgt_dashboard.item(selected_row, 1).text()
+                else:
+                    consultation_id = self.ui.tblwdgt_dashboard.item(0, 0).text()
+                    patient_name = self.ui.tblwdgt_dashboard.item(0, 1).text()
+            else:
+                consultation_id = self.ui.tblwdgt_dashboard.item(row_id, 0).text()
+                patient_name = self.ui.tblwdgt_dashboard.item(row_id, 1).text()
+
+        patient_id = fetch_patient_id(patient_name)[0]
 
         consultation_started(consultation_id)
         self.populate_table()

@@ -32,7 +32,7 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="main_layout" stretch="0,16,0,0,0,0,0">
+  <layout class="QVBoxLayout" name="main_layout" stretch="0,0,0,0,0,0,0">
    <property name="spacing">
     <number>10</number>
    </property>
@@ -100,7 +100,7 @@
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>0</y>
+          <y>-123</y>
           <width>533</width>
           <height>1224</height>
          </rect>
@@ -199,7 +199,7 @@
             <number>10</number>
            </property>
            <item>
-            <layout class="QVBoxLayout" name="vlo_date" stretch="1,1">
+            <layout class="QVBoxLayout" name="vlo_date" stretch="1,0">
              <property name="spacing">
               <number>10</number>
              </property>
@@ -220,6 +220,9 @@
                </property>
                <property name="displayFormat">
                 <string>MMM dd, yyyy</string>
+               </property>
+               <property name="calendarPopup">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -527,7 +530,7 @@
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-2053</y>
+          <y>-2105</y>
           <width>533</width>
           <height>2597</height>
          </rect>
@@ -785,7 +788,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QTextEdit" name="txtedit_previous_admission"/>
+             <widget class="QTextEdit" name="txtedit_previous_admission">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QCheckBox" name="chkbx_asthma">
@@ -795,7 +802,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QTextEdit" name="txtedit_asthma"/>
+             <widget class="QTextEdit" name="txtedit_asthma">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QCheckBox" name="chkbx_allergies">
@@ -805,7 +816,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QTextEdit" name="txtedit_allergies"/>
+             <widget class="QTextEdit" name="txtedit_allergies">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QCheckBox" name="chkbx_primary_kochs_infection">
@@ -815,7 +830,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QTextEdit" name="txtedit_primary_kochs_infection"/>
+             <widget class="QTextEdit" name="txtedit_primary_kochs_infection">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QCheckBox" name="chkbx_heart_kidney_lung_condition">
@@ -825,7 +844,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QTextEdit" name="txtedit_heart_kidney_lung_condition"/>
+             <widget class="QTextEdit" name="txtedit_heart_kidney_lung_condition">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QCheckBox" name="chkbx_surgical_operation">
@@ -835,7 +858,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QTextEdit" name="txtedit_surgical_operation"/>
+             <widget class="QTextEdit" name="txtedit_surgical_operation">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QCheckBox" name="chkbx_other_remarks_pmh">
@@ -845,7 +872,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QTextEdit" name="txtedit_other_remarks_pmh"/>
+             <widget class="QTextEdit" name="txtedit_other_remarks_pmh">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -893,7 +924,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="chkbx_diabetes_millitus">
+             <widget class="QCheckBox" name="chkbx_diabetes_mellitus">
               <property name="text">
                <string>Diabetes Mellitus</string>
               </property>
@@ -935,7 +966,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QTextEdit" name="txtedit_other_remarks_fmh"/>
+             <widget class="QTextEdit" name="txtedit_other_remarks_fmh">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -997,7 +1032,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QTextEdit" name="txtedit_other_remarks_eh"/>
+             <widget class="QTextEdit" name="txtedit_other_remarks_eh">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -1032,7 +1071,7 @@
                  <enum>QAbstractSpinBox::UpDownArrows</enum>
                 </property>
                 <property name="maximum">
-                 <number>3</number>
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -1072,7 +1111,7 @@
                  <enum>QAbstractSpinBox::UpDownArrows</enum>
                 </property>
                 <property name="maximum">
-                 <number>3</number>
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -1112,7 +1151,7 @@
                  <enum>QAbstractSpinBox::UpDownArrows</enum>
                 </property>
                 <property name="maximum">
-                 <number>3</number>
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -1152,7 +1191,7 @@
                  <enum>QAbstractSpinBox::UpDownArrows</enum>
                 </property>
                 <property name="maximum">
-                 <number>3</number>
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -1192,7 +1231,7 @@
                  <enum>QAbstractSpinBox::UpDownArrows</enum>
                 </property>
                 <property name="maximum">
-                 <number>3</number>
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -1232,7 +1271,7 @@
                  <enum>QAbstractSpinBox::UpDownArrows</enum>
                 </property>
                 <property name="maximum">
-                 <number>3</number>
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -1272,7 +1311,7 @@
                  <enum>QAbstractSpinBox::UpDownArrows</enum>
                 </property>
                 <property name="maximum">
-                 <number>3</number>
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -1312,7 +1351,7 @@
                  <enum>QAbstractSpinBox::UpDownArrows</enum>
                 </property>
                 <property name="maximum">
-                 <number>3</number>
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -1352,7 +1391,7 @@
                  <enum>QAbstractSpinBox::UpDownArrows</enum>
                 </property>
                 <property name="maximum">
-                 <number>3</number>
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -1392,7 +1431,7 @@
                  <enum>QAbstractSpinBox::UpDownArrows</enum>
                 </property>
                 <property name="maximum">
-                 <number>3</number>
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -1432,7 +1471,7 @@
                  <enum>QAbstractSpinBox::UpDownArrows</enum>
                 </property>
                 <property name="maximum">
-                 <number>3</number>
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -1472,7 +1511,7 @@
                  <enum>QAbstractSpinBox::UpDownArrows</enum>
                 </property>
                 <property name="maximum">
-                 <number>3</number>
+                 <number>10</number>
                 </property>
                </widget>
               </item>

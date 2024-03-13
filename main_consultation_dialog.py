@@ -57,7 +57,10 @@ class ConsultationDialog(QDialog):
 
             return last_consultation_id
         
-        self.consultation_id = fetch_last_consultation_id()[0] + 1
+        last_consultation_id = fetch_last_consultation_id()[0]
+        if last_consultation_id is None:
+            last_consultation_id = 0
+        self.consultation_id = last_consultation_id + 1
 
         self.ui.lbl_consultation_id.setText(f"Consultation #{self.consultation_id}")
 

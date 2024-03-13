@@ -6304,3 +6304,5 @@ UI/__pycache__/main_patients_ui.cpython-312.pyc
 UI/__pycache__/main_position_dialog_ui.cpython-312.pyc
 UI/__pycache__/main_positions_ui.cpython-312.pyc
 UI/__pycache__/main_ui.cpython-312.pyc
+Database/data.db
+Logging/database_manager.2024-02-25_20-52-37_616030.log.zip
