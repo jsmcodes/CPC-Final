@@ -4,8 +4,12 @@ from dev_functions.database_manager import DatabaseManager
 from UI.main_content_ui import Ui_Content
 from main_dashboard import Dashboard
 from main_consultations import Consultations
-from main_doctors import Doctors
+from main_services import Services
+from main_sales import Sales
+from main_payment_methods import PaymentMethods
+from main_items import Items
 from main_patients import Patients
+from main_doctors import Doctors
 from main_positions import Positions
 
 
@@ -25,11 +29,23 @@ class Content(QWidget):
 
         self.dashbord_page = Dashboard(self)
         self.consultations_page = Consultations(self)
-        self.doctors_page = Doctors(self)
+        self.services_page = Services(self)
+        self.sales_page = Sales(self)
+        self.payment_methods_page = PaymentMethods(self)
+        self.items_page = Items(self)
         self.patients_page = Patients(self)
+        self.doctors_page = Doctors(self)
         self.positions_page = Positions(self)
 
-        self.add_pages(self.dashbord_page, self.consultations_page, self.doctors_page, self.patients_page, self.positions_page)
+        self.add_pages(self.dashbord_page, 
+                       self.consultations_page, 
+                       self.services_page, 
+                       self.sales_page, 
+                       self.payment_methods_page, 
+                       self.items_page, 
+                       self.patients_page, 
+                       self.doctors_page, 
+                       self.positions_page)
 
         self.connect_functions()
 
@@ -49,16 +65,32 @@ class Content(QWidget):
         self.ui.stckdwdgt_content.setCurrentIndex(1)
         self.consultations_page.populate_table()
 
-    def switch_to_doctors(self):
+    def switch_to_services(self):
         self.ui.stckdwdgt_content.setCurrentIndex(2)
-        self.doctors_page.populate_table()
+        self.services_page.populate_table()
+
+    def switch_to_sales(self):
+        self.ui.stckdwdgt_content.setCurrentIndex(3)
+        self.sales_page.populate_table()
+
+    def switch_to_payment_methods(self):
+        self.ui.stckdwdgt_content.setCurrentIndex(4)
+        self.payment_methods_page.populate_table()
+
+    def switch_to_items(self):
+        self.ui.stckdwdgt_content.setCurrentIndex(5)
+        self.items_page.populate_table()
 
     def switch_to_patients(self):
-        self.ui.stckdwdgt_content.setCurrentIndex(3)
+        self.ui.stckdwdgt_content.setCurrentIndex(6)
         self.patients_page.populate_table()
 
+    def switch_to_doctors(self):
+        self.ui.stckdwdgt_content.setCurrentIndex(7)
+        self.doctors_page.populate_table()
+
     def switch_to_positions(self):
-        self.ui.stckdwdgt_content.setCurrentIndex(4)
+        self.ui.stckdwdgt_content.setCurrentIndex(8)
         self.positions_page.populate_table()
 
     def set_user_id_name_position(self, user_id: int, user_name: str, user_position: str) -> None:
@@ -70,6 +102,9 @@ class Content(QWidget):
         self.ui.lbl_position.setText(self.user_position)
 
     def set_navigation_for_receptionists(self):
+        self.ui.pshbtn_payment_methods.hide()
+        self.ui.pshbtn_sales.hide()
+        self.ui.pshbtn_services.hide()
         self.ui.pshbtn_settings.hide()
         self.ui.pshbtn_reports.hide()
         self.ui.pshbtn_positions.hide()
@@ -81,12 +116,14 @@ class Content(QWidget):
         self.dashbord_page.set_ui_for_administrators()
 
     def set_navigation_for_doctors(self):
-        self.ui.pshbtn_settings.hide()
         self.ui.pshbtn_reports.hide()
+        self.ui.pshbtn_services.hide()
+        self.ui.pshbtn_sales.hide()
+        self.ui.pshbtn_payment_methods.hide()
         self.ui.pshbtn_positions.hide()
         self.ui.pshbtn_doctors.hide()
         self.ui.pshbtn_items.hide()
-        self.ui.pshbtn_sales.hide()
+        self.ui.pshbtn_settings.hide()
         self.dashbord_page.set_ui_for_doctors()
         self.consultations_page.set_ui_for_doctors()
         self.patients_page.set_ui_for_doctors()
@@ -100,18 +137,24 @@ class Content(QWidget):
         self.parent.switch_to_login()
 
     def reset_all_navigation(self):
-        self.ui.pshbtn_settings.show()
         self.ui.pshbtn_reports.show()
-        self.ui.pshbtn_positions.show()
-        self.ui.pshbtn_doctors.show()
-        self.ui.pshbtn_items.show()
+        self.ui.pshbtn_services.show()
         self.ui.pshbtn_sales.show()
+        self.ui.pshbtn_payment_methods.show()
+        self.ui.pshbtn_items.show()
+        self.ui.pshbtn_doctors.show()
+        self.ui.pshbtn_positions.show()
+        self.ui.pshbtn_settings.show()
         self.ui.pshbtn_doctors.setText("Doctors")
 
     def connect_functions(self):
         self.ui.pshbtn_dashboard.clicked.connect(self.switch_to_dashboard)
         self.ui.pshbtn_consultations.clicked.connect(self.switch_to_consultations)
-        self.ui.pshbtn_doctors.clicked.connect(self.switch_to_doctors)
+        self.ui.pshbtn_services.clicked.connect(self.switch_to_services)
+        self.ui.pshbtn_sales.clicked.connect(self.switch_to_sales)
+        self.ui.pshbtn_payment_methods.clicked.connect(self.switch_to_payment_methods)
+        self.ui.pshbtn_items.clicked.connect(self.switch_to_items)
         self.ui.pshbtn_patients.clicked.connect(self.switch_to_patients)
+        self.ui.pshbtn_doctors.clicked.connect(self.switch_to_doctors)
         self.ui.pshbtn_positions.clicked.connect(self.switch_to_positions)
         self.ui.pshbtn_logout.clicked.connect(self.handle_logout)

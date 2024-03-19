@@ -32,7 +32,7 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="main_layout" stretch="0,0,0,0,0,0,0">
+  <layout class="QVBoxLayout" name="main_layout" stretch="0,1,0,0,0,0,0,0">
    <property name="spacing">
     <number>10</number>
    </property>
@@ -100,7 +100,7 @@
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-123</y>
+          <y>0</y>
           <width>533</width>
           <height>1224</height>
          </rect>
@@ -530,7 +530,7 @@
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>-2105</y>
+          <y>0</y>
           <width>533</width>
           <height>2597</height>
          </rect>
@@ -1559,6 +1559,13 @@
      </property>
      <property name="text">
       <string>Create Prescription</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pshbtn_create_payment">
+     <property name="text">
+      <string>Create Payment</string>
      </property>
     </widget>
    </item>

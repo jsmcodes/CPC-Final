@@ -96,7 +96,10 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="lnedit_sales_date">
+      <widget class="QDateEdit" name="dtedit_sales_date">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
@@ -157,6 +160,12 @@
      </property>
      <property name="alternatingRowColors">
       <bool>true</bool>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
      </property>
      <property name="cornerButtonEnabled">
       <bool>false</bool>

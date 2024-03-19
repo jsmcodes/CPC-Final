@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ItemDIalog</class>
- <widget class="QDialog" name="ItemDIalog">
+ <class>ServiceDialog</class>
+ <widget class="QDialog" name="ServiceDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>421</width>
+    <height>301</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="main_layout" stretch="1,1,1,1,1,1">
+  <layout class="QVBoxLayout" name="main_layout">
    <property name="spacing">
     <number>10</number>
    </property>
@@ -37,9 +37,9 @@
     <number>10</number>
    </property>
    <item>
-    <widget class="QLabel" name="lbl_item_id">
+    <widget class="QLabel" name="lbl_service_id">
      <property name="text">
-      <string>Item #</string>
+      <string>Service #</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -47,42 +47,36 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="lbl_item_name">
+    <widget class="QLabel" name="lbl_service_name">
      <property name="text">
       <string>Name:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="lnedit_item_name">
+    <widget class="QLineEdit" name="lnedit_service_name">
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
      <property name="placeholderText">
       <string>Enter name...</string>
      </property>
-     <property name="clearButtonEnabled">
-      <bool>true</bool>
-     </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="lbl_item_price">
+    <widget class="QLabel" name="lbl_price">
      <property name="text">
       <string>Price:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="lnedit_item_price">
+    <widget class="QLineEdit" name="lnedit_price">
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
      <property name="placeholderText">
       <string>Enter price...</string>
-     </property>
-     <property name="clearButtonEnabled">
-      <bool>true</bool>
      </property>
     </widget>
    </item>

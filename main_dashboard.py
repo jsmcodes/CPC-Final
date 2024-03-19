@@ -296,10 +296,11 @@ class Dashboard(QWidget):
                 patient_name = self.ui.tblwdgt_dashboard.item(row_id, 1).text()
 
         patient_id = fetch_patient_id(patient_name)[0]
+        doctor_name = self.parent.user_name
 
         consultation_started(consultation_id)
         self.populate_table()
-        dialog = DoctorConsultationDialog(self, "Add", patient_id, consultation_id)
+        dialog = DoctorConsultationDialog(self, "Add", doctor_name, patient_id, consultation_id)
         result = dialog.exec_()
 
         if result == dialog.Accepted:

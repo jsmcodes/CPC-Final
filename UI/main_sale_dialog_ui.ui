@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>OrderDialog</class>
- <widget class="QDialog" name="OrderDialog">
+ <class>SaleDialog</class>
+ <widget class="QDialog" name="SaleDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>675</width>
+    <width>1350</width>
     <height>720</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>675</width>
+    <width>1350</width>
     <height>720</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>675</width>
+    <width>1350</width>
     <height>720</height>
    </size>
   </property>
@@ -36,30 +36,36 @@
       <number>10</number>
      </property>
      <item row="0" column="0">
-      <widget class="QLabel" name="lbl_order_id">
+      <widget class="QLabel" name="lbl_sale_id">
        <property name="text">
-        <string>Order #</string>
+        <string>Sale #</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="lbl_date">
        <property name="text">
         <string>Date:</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLineEdit" name="lnedit_order_id">
+      <widget class="QLineEdit" name="lnedit_id">
        <property name="alignment">
         <set>Qt::AlignCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="lnedit_order_date">
+      <widget class="QLineEdit" name="lnedit_date">
        <property name="alignment">
         <set>Qt::AlignCenter</set>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -96,12 +102,15 @@
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
     </layout>
    </item>
    <item>
-    <layout class="QGridLayout" name="glo_item_name_quantity" columnstretch="1,0,0">
+    <layout class="QGridLayout" name="glo_item_name_quantity" columnstretch="3,0,1,0">
      <property name="spacing">
       <number>10</number>
      </property>
@@ -112,7 +121,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item row="0" column="2">
       <widget class="QLabel" name="lbl_quantity">
        <property name="text">
         <string>Quantity:</string>
@@ -126,14 +135,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lnedit_quantity">
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
+     <item row="1" column="3">
       <widget class="QPushButton" name="pshbtn_add_to_cart">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
@@ -147,12 +149,34 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="2">
+      <widget class="QSpinBox" name="spnbx_quantity">
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="suffix">
+        <string/>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>999</number>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
     <widget class="QTableWidget" name="tblwdgt_cart">
      <property name="verticalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContents</enum>
      </property>
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
@@ -175,11 +199,6 @@
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>
      </attribute>
-     <column>
-      <property name="text">
-       <string/>
-      </property>
-     </column>
      <column>
       <property name="text">
        <string>ID</string>
@@ -221,6 +240,9 @@
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

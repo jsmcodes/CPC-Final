@@ -116,40 +116,47 @@ class Consultations(QWidget):
 
         consultation_datas = fetch_consultation_data()
         user_position = self.parent.user_position
-
-        if not consultation_datas:
-            return
         
-        for consultation_data in consultation_datas:
-            row = self.ui.tblwdgt_consultations.rowCount()
-            self.ui.tblwdgt_consultations.insertRow(row)
+        if consultation_datas:
+            for consultation_data in consultation_datas:
+                row = self.ui.tblwdgt_consultations.rowCount()
+                self.ui.tblwdgt_consultations.insertRow(row)
 
+                if user_position == "Receptionist" or user_position == "Administrator":
+                    id, patient_name, doctor_name, status = consultation_data
+                    
+                    self.ui.tblwdgt_consultations.setItem(row, 0, QTableWidgetItem(str(id)))
+                    self.ui.tblwdgt_consultations.setItem(row, 1, QTableWidgetItem(patient_name))
+
+                    self.ui.tblwdgt_consultations.setColumnCount(4)
+                    self.ui.tblwdgt_consultations.setHorizontalHeaderItem(2, QTableWidgetItem("Doctor"))
+                    self.ui.tblwdgt_consultations.setHorizontalHeaderItem(3, QTableWidgetItem("Status"))
+                    self.ui.tblwdgt_consultations.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
+                    self.ui.tblwdgt_consultations.horizontalHeader().setSectionResizeMode(2, QHeaderView.Stretch)
+
+                    self.ui.tblwdgt_consultations.setItem(row, 2, QTableWidgetItem(doctor_name))
+                    self.ui.tblwdgt_consultations.setItem(row, 3, QTableWidgetItem(status))
+                else:
+                    id, patient_name, status = consultation_data
+
+                    self.ui.tblwdgt_consultations.setItem(row, 0, QTableWidgetItem(str(id)))
+                    self.ui.tblwdgt_consultations.setItem(row, 1, QTableWidgetItem(patient_name))
+                    self.ui.tblwdgt_consultations.setItem(row, 2, QTableWidgetItem(status))
+                    self.ui.tblwdgt_consultations.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
+
+                for col in range(self.ui.tblwdgt_consultations.columnCount()):
+                    item = self.ui.tblwdgt_consultations.item(row, col)
+                    if item is not None:
+                        item.setTextAlignment(Qt.AlignCenter)
+        else:
             if user_position == "Receptionist" or user_position == "Administrator":
-                id, patient_name, doctor_name, status = consultation_data
-                
-                self.ui.tblwdgt_consultations.setItem(row, 0, QTableWidgetItem(str(id)))
-                self.ui.tblwdgt_consultations.setItem(row, 1, QTableWidgetItem(patient_name))
-
                 self.ui.tblwdgt_consultations.setColumnCount(4)
                 self.ui.tblwdgt_consultations.setHorizontalHeaderItem(2, QTableWidgetItem("Doctor"))
                 self.ui.tblwdgt_consultations.setHorizontalHeaderItem(3, QTableWidgetItem("Status"))
                 self.ui.tblwdgt_consultations.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
                 self.ui.tblwdgt_consultations.horizontalHeader().setSectionResizeMode(2, QHeaderView.Stretch)
-
-                self.ui.tblwdgt_consultations.setItem(row, 2, QTableWidgetItem(doctor_name))
-                self.ui.tblwdgt_consultations.setItem(row, 3, QTableWidgetItem(status))
             else:
-                id, patient_name, status = consultation_data
-
-                self.ui.tblwdgt_consultations.setItem(row, 0, QTableWidgetItem(str(id)))
-                self.ui.tblwdgt_consultations.setItem(row, 1, QTableWidgetItem(patient_name))
-                self.ui.tblwdgt_consultations.setItem(row, 2, QTableWidgetItem(status))
                 self.ui.tblwdgt_consultations.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
-
-            for col in range(self.ui.tblwdgt_consultations.columnCount()):
-                item = self.ui.tblwdgt_consultations.item(row, col)
-                if item is not None:
-                    item.setTextAlignment(Qt.AlignCenter)
 
     def handle_view(self, item):
         selected_row = item.row()
@@ -195,9 +202,11 @@ class Consultations(QWidget):
         if selected_item:
             selected_row = selected_item[0].row()
             consultation_id = self.ui.tblwdgt_consultations.item(selected_row, 0).text()
+            status = self.ui.tblwdgt_consultations.item(selected_row, 2).text()
 
-            self.update_consultation_archived(consultation_id)
-            self.populate_table()
+            if status == "Waiting":
+                self.update_consultation_archived(consultation_id)
+                self.populate_table()
 
     def update_consultation_archived(self, consultation_id) -> None:
         self.database.connect()
@@ -224,8 +233,16 @@ class Consultations(QWidget):
         self.ui.wdgt_page_buttons.hide()
 
     def reset_ui(self):
+        def reset_table():
+            self.ui.tblwdgt_consultations.setColumnCount(3)
+            self.ui.tblwdgt_consultations.setHorizontalHeaderItem(0, QTableWidgetItem("ID"))
+            self.ui.tblwdgt_consultations.setHorizontalHeaderItem(1, QTableWidgetItem("Patient"))
+            self.ui.tblwdgt_consultations.setHorizontalHeaderItem(2, QTableWidgetItem("Status"))
+            self.ui.tblwdgt_consultations.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
+            self.ui.tblwdgt_consultations.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeToContents)
         self.ui.wdgt_page_buttons.show()
         self.ui.lnedit_doctor_name.show()
+        reset_table()
 
     def connect_functions(self):
         self.ui.pshbtn_refresh.clicked.connect(self.populate_table)

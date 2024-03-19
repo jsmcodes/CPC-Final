@@ -5,14 +5,16 @@ from datetime import datetime
 
 from dev_functions.database_manager import DatabaseManager
 from UI.main_dashboard_consultation_dialog_ui import Ui_DoctorConsultationDialog
+from main_prescription_dialog import PrescriptionDialog
 
 
 class DoctorConsultationDialog(QDialog):
-    def __init__(self, parent: QWidget, purpose: str, patient_id: int, consultation_id: int=None):
+    def __init__(self, parent: QWidget, purpose: str, doctor_name:str, patient_id: int, consultation_id: int=None):
         super().__init__()
         self.database = DatabaseManager()
         self.parent = parent
         self.purpose = purpose
+        self.doctor_name = doctor_name
         self.patient_id = patient_id
         self.consultation_id = consultation_id
         self.setup_ui()
@@ -765,6 +767,44 @@ class DoctorConsultationDialog(QDialog):
             checkbox.setEnabled(False)
             checkbox.setChecked(False)
 
+    def handle_create_prescription(self):
+        def check_if_prescription_exists():
+            pass
+
+        def fetch_patient_address():
+            self.database.connect()
+
+            query = f"""
+                SELECT
+                    address
+                FROM
+                    patients
+                WHERE
+                    id = {self.patient_id}
+            """
+            self.database.c.execute(query)
+
+            patient_address = self.database.c.fetchone()
+
+            self.database.disconnect()
+
+            return patient_address[0]
+        
+        consultation_id = self.consultation_id
+        patient_name = self.ui.lnedit_name.text()
+        consultation_date = self.ui.dtedit_consultation_date.date().toPyDate()
+        formatted_date = consultation_date.strftime("%b %d, %Y")
+        patient_address = fetch_patient_address()
+        doctor_name = self.doctor_name
+
+        dialog = PrescriptionDialog(consultation_id, patient_name, formatted_date, patient_address, doctor_name)
+        result = dialog.exec_()
+
+        if result == dialog.Accepted:
+            pass
+        else:
+            dialog.close()
+
     def handle_close(self):
         self.reject()
 
@@ -795,5 +835,6 @@ class DoctorConsultationDialog(QDialog):
         self.ui.spnbx_mmr.valueChanged.connect(lambda value: self.handle_spinbox_changed(value, self.ui.chkbx_mmr))
         self.ui.spnbx_japanese_encephalitis.valueChanged.connect(lambda value: self.handle_spinbox_changed(value, self.ui.chkbx_japanese_encephalitis))
 
+        self.ui.pshbtn_create_prescription.clicked.connect(self.handle_create_prescription)
         self.ui.pshbtn_finish_consultation.clicked.connect(self.handle_finish_consultation)
         self.ui.pshbtn_close.clicked.connect(self.handle_close)

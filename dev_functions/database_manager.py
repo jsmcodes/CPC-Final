@@ -144,6 +144,49 @@ class DatabaseManager:
                         japanese_encephalitis INT,
                         japanese_encephalitis_booster BIT(1) DEFAULT 0
                     """
+                ),
+                "services": (
+                    """
+                        id INT PRIMARY KEY AUTO_INCREMENT,
+                        name VARCHAR(255),
+                        price DOUBLE,
+                        archived BIT(1) DEFAULT 0
+                    """
+                ),
+                "payment_methods": (
+                    """
+                        id INT PRIMARY KEY AUTO_INCREMENT,
+                        name VARCHAR(255),
+                        archived BIT(1) DEFAULT 0
+                    """
+                ),
+                "items": (
+                    """
+                        id INT PRIMARY KEY AUTO_INCREMENT,
+                        name VARCHAR(255),
+                        price DOUBLE,
+                        archived BIT(1) DEFAULT 0
+                    """
+                ),
+                "sales": (
+                    """
+                        id INT PRIMARY KEY AUTO_INCREMENT,
+                        sale_date DATE,
+                        patient_id INT,
+                        user_id INT,
+                        total_price DOUBLE,
+                        archived BIT(1) DEFAULT 0
+                    """
+                ),
+                "sale_details": (
+                    """
+                        id INT PRIMARY KEY AUTO_INCREMENT,
+                        sale_id INT,
+                        item_id INT,
+                        price DOUBLE,
+                        quantity INT,
+                        total_price DOUBLE
+                    """
                 )
             }
         else:
@@ -281,6 +324,49 @@ class DatabaseManager:
                         mmr_booster BIT(1) DEFAULT 0,
                         japanese_encephalitis INT,
                         japanese_encephalitis_booster BIT(1) DEFAULT 0
+                    """
+                ),
+                "services": (
+                    """
+                        id INT PRIMARY KEY AUTO_INCREMENT,
+                        name VARCHAR(255),
+                        price DOUBLE,
+                        archived BIT(1) DEFAULT 0
+                    """
+                ),
+                "payment_methods": (
+                    """
+                        id INT PRIMARY KEY AUTO_INCREMENT,
+                        name VARCHAR(255),
+                        archived BIT(1) DEFAULT 0
+                    """
+                ),
+                "items": (
+                    """
+                        id INT PRIMARY KEY AUTO_INCREMENT,
+                        name VARCHAR(255),
+                        price DOUBLE,
+                        archived BIT(1) DEFAULT 0
+                    """
+                ),
+                "sales": (
+                    """
+                        id INT PRIMARY KEY AUTO_INCREMENT,
+                        sale_date DATE,
+                        patient_id INT,
+                        user_id INT,
+                        total_price DOUBLE,
+                        archived BIT(1) DEFAULT 0
+                    """
+                ),
+                "sale_details": (
+                    """
+                        id INT PRIMARY KEY AUTO_INCREMENT,
+                        sale_id INT,
+                        item_id INT,
+                        price DOUBLE,
+                        quantity INT,
+                        total_price DOUBLE
                     """
                 )
             }

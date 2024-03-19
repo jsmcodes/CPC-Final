@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Items</class>
- <widget class="QWidget" name="Items">
+ <class>PaymentMethods</class>
+ <widget class="QWidget" name="PaymentMethods">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1111</width>
-    <height>814</height>
+    <width>997</width>
+    <height>759</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@
     <number>10</number>
    </property>
    <item>
-    <layout class="QHBoxLayout" name="hlo_refresh" stretch="0,1,0">
+    <layout class="QHBoxLayout" name="hlo_refresh">
      <property name="spacing">
       <number>10</number>
      </property>
@@ -71,7 +71,7 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="hlo_search" stretch="0,1">
+    <layout class="QHBoxLayout" name="hlo_search">
      <property name="spacing">
       <number>10</number>
      </property>
@@ -86,22 +86,19 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lnedit_item_name">
+      <widget class="QLineEdit" name="lnedit_payment_method_name">
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
        <property name="placeholderText">
         <string>Enter name...</string>
        </property>
-       <property name="clearButtonEnabled">
-        <bool>true</bool>
-       </property>
       </widget>
      </item>
     </layout>
    </item>
    <item>
-    <widget class="QTableWidget" name="tblwdgt_items">
+    <widget class="QTableWidget" name="tblwdgt_payment_methods">
      <property name="verticalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOn</enum>
      </property>
@@ -136,63 +133,44 @@
        <string>Name</string>
       </property>
      </column>
-     <column>
-      <property name="text">
-       <string>Price</string>
-      </property>
-     </column>
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="wdgt_page_buttons" native="true">
-     <layout class="QHBoxLayout" name="wdgt_page_buttons_layout" stretch="1,1,1">
-      <property name="spacing">
-       <number>10</number>
-      </property>
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QPushButton" name="pshbtn_add">
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Add</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pshbtn_edit">
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Edit</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pshbtn_archive">
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="text">
-         <string>Archive</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
+    <layout class="QHBoxLayout" name="hlo_page_buttons">
+     <property name="spacing">
+      <number>10</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="pshbtn_add">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>Add</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pshbtn_edit">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>Edit</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pshbtn_archive">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string>Archive</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
